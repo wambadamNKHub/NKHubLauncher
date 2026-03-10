@@ -1,0 +1,93 @@
+-- NK Hub Garden Horizons
+-- Version: 3.2
+
+-- Instances:
+
+local NKHub = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local SellAll = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
+local TradeAll = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+
+-- Scripts
+local function sellall()
+	local args = {
+		"SellAll"
+	}
+	game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("SellItems"):InvokeServer(unpack(args))
+end
+
+local function tradeall()
+	local args = {
+		"TurnInAll"
+	}
+	game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("BotanistQuestRequest"):InvokeServer(unpack(args))
+end
+
+--Properties:
+
+NKHub.Name = "NKHub"
+NKHub.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+NKHub.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = NKHub
+Frame.BackgroundColor3 = Color3.fromRGB(66, 66, 66)
+Frame.BackgroundTransparency = 0.500
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.339639634, 0, 0.220588237, 0)
+Frame.Size = UDim2.new(0, 319, 0, 271)
+
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Size = UDim2.new(0, 319, 0, 37)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "NK Hub"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 31.000
+
+SellAll.Name = "SellAll"
+SellAll.Parent = Frame
+SellAll.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+SellAll.BorderColor3 = Color3.fromRGB(0, 0, 0)
+SellAll.BorderSizePixel = 0
+SellAll.Position = UDim2.new(0.0282131657, 0, 0.173431739, 0)
+SellAll.Size = UDim2.new(0, 127, 0, 30)
+SellAll.Font = Enum.Font.SourceSans
+SellAll.Text = "Sell All"
+SellAll.TextColor3 = Color3.fromRGB(255, 255, 255)
+SellAll.TextScaled = true
+SellAll.TextSize = 14.000
+SellAll.TextWrapped = true
+
+UICorner.Parent = SellAll
+SellAll.Activated:Connect(function()
+	sellall()
+end)
+
+
+TradeAll.Name = "Trade All"
+TradeAll.Parent = Frame
+TradeAll.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+TradeAll.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TradeAll.BorderSizePixel = 0
+TradeAll.Position = UDim2.new(0.0282131657, 0, 0.328413278, 0)
+TradeAll.Size = UDim2.new(0, 127, 0, 30)
+TradeAll.Font = Enum.Font.SourceSans
+TradeAll.Text = "Trade All (Flora event)"
+TradeAll.TextColor3 = Color3.fromRGB(255, 255, 255)
+TradeAll.TextScaled = true
+TradeAll.TextSize = 14.000
+TradeAll.TextWrapped = true
+
+UICorner_2.Parent = TradeAll
+TradeAll.Activated:Connect(function()
+	tradeall()
+end)
+
+
+
