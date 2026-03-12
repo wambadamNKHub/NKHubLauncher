@@ -54,7 +54,7 @@ local Window = Rayfield:CreateWindow({
 
 local TelTab = Window:CreateTab("Teleports", 4483362458) -- Title, Image
 
-local Section = Tab:CreateSection("Buttons")
+local Section = TelTab:CreateSection("Buttons")
 
 local Button1 = TelTab:CreateButton({
    Name = "Zone1",
