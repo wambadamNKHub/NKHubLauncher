@@ -1,4 +1,4 @@
-local ArrayField = loadstring(game:HttpGet('https://raw.githubusercontent.com/UI-Interface/ArrayField/main/Source.lua'))()
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 --Vars
 local Players = game:GetService("Players")
@@ -18,95 +18,99 @@ local CharZoneEnd = CFrame.new(-310.887268, 1879, 1368.40076, 0, 0, -1, 0, 1, 0,
 
 
 
-local Window = ArrayField:CreateWindow({
-   Name = "NkHub Grow Beanstalk for Brain Rot V1",
+local Window = Rayfield:CreateWindow({
+   Name = "Grow Beanstalk for Brainrot v1",
+   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "No Key Hub",
-   LoadingSubtitle = "Never have to enter a key again",
+   LoadingSubtitle = "Never enter a key again!",
+   ShowText = "NkHub", -- for mobile users to unhide Rayfield, change if you'd like
+   Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+
+   ToggleUIKeybind = "K", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
+
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false -- Prevents Rayfield from emitting warnings when the script has a version mismatch with the interface.
+
    ConfigurationSaving = {
       Enabled = true,
       FolderName = nil, -- Create a custom folder for your hub/game
       FileName = "NkHubConfig"
    },
+
    Discord = {
-      Enabled = false,
-      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
-      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
+      Invite = "noinvitelink", -- The Discord invite code, do not include Discord.gg/. E.g. Discord.gg/ ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the Discord every time they load it up
    },
+
    KeySystem = false, -- Set this to true to use our key system
    KeySettings = {
       Title = "Untitled",
       Subtitle = "Key System",
-      Note = "No method of obtaining the key is provided",
-      FileName = "Key", -- It is recommended to use something unique as other scripts using ArrayField may overwrite your key file
+      Note = "No method of obtaining the key is provided", -- Use this to tell the user how to get a key
+      FileName = "Key", -- It is recommended to use something unique, as other scripts using Rayfield may overwrite your key file
       SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like ArrayField to get the key from
-      Actions = {
-			[1] = {
-				Text = 'Click here to copy the key link <--',
-				OnPress = function()
-                    print('Pressed')
-				end,
-				}
-			},
-      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"Hello"} -- List of keys that the system will accept, can be RAW file links (pastebin, github, etc.) or simple strings ("hello", "key22")
    }
 })
 
-local MainTab = Window:CreateTab("Main", 4483362458) -- Title, Image
-local TelSection = MainTab:CreateSection("Teleports",false) -- The 2nd argument is to tell if its only a Title and doesnt contain element
-local L1Button = TelTab:CreateButton({
-   Name = "Level 1",
-   Interact = 'Click',
+local TelTab = Window:CreateTab("Teleports", 4483362458) -- Title, Image
+local TeleportsBSection = Tab:CreateSection("TP Buttons")
+
+local Zone1Button = TelTab:CreateButton({
+   Name = "zone 1",
    Callback = function()
    HR.CFrame = CharZone1
    end,
 })
-local L2Button = TelTab:CreateButton({
-   Name = "Level 2",
-   Interact = 'Click',
+local Zone2Button = TelTab:CreateButton({
+   Name = "zone 2",
    Callback = function()
    HR.CFrame = CharZone2
    end,
 })
-local L3Button = TelTab:CreateButton({
-   Name = "Level 3",
-   Interact = 'Click',
+local Zone3Button = TelTab:CreateButton({
+   Name = "zone 3",
    Callback = function()
    HR.CFrame = CharZone3
    end,
 })
-local L4Button = TelTab:CreateButton({
-   Name = "Level 4",
-   Interact = 'Click',
+local Zone4Button = TelTab:CreateButton({
+   Name = "zone 4",
    Callback = function()
    HR.CFrame = CharZone4
    end,
 })
-local L5Button = TelTab:CreateButton({
-   Name = "Level 5",
-   Interact = 'Click',
+local Zone5Button = TelTab:CreateButton({
+   Name = "zone 5",
    Callback = function()
    HR.CFrame = CharZone5
    end,
 })
-local L6Button = TelTab:CreateButton({
-   Name = "Level 6",
-   Interact = 'Click',
+local Zone6Button = TelTab:CreateButton({
+   Name = "zone 6",
    Callback = function()
    HR.CFrame = CharZone6
    end,
 })
-local L7Button = TelTab:CreateButton({
-   Name = "Level 7",
-   Interact = 'Click',
+local Zone7Button = TelTab:CreateButton({
+   Name = "zone 7",
    Callback = function()
    HR.CFrame = CharZone7
    end,
 })
-local L8Button = TelTab:CreateButton({
-   Name = "Top of World (use while flying)",
-   Interact = 'Click',
-   Callback = function()
-   HR.CFrame = CharZone8
+
+local TeleportsTSection = Tab:CreateSection("Toggles")
+
+
+local Toggle = Tab:CreateToggle({
+   Name = "Always max Mult",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file; make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+        while true do
+            HR.CFrame = CharZone8
+        end
    end,
 })
